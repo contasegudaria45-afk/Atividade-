@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atividade: Grandes Acontecimentos da História</title>
+    <title>A Revolução da Geladeira Expositora</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +12,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-            background-color: #0f172a;
+            background-color: #090d16;
             color: #f8fafc;
             overflow: hidden;
             height: 100vh;
@@ -23,12 +23,13 @@
         }
         .presentation-container {
             position: relative;
-            width: 90vw;
-            height: 80vh;
-            max-width: 1200px;
-            background-color: #1e293b;
-            border-radius: 16px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            width: 95vw;
+            height: 85vh;
+            max-width: 1300px;
+            background-color: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
             display: flex;
             overflow: hidden;
         }
@@ -40,11 +41,11 @@
             height: 100%;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s ease;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 0.8fr;
             padding: 60px;
-            gap: 40px;
+            gap: 50px;
             align-items: center;
         }
         .slide.active {
@@ -58,137 +59,163 @@
         }
         .slide-tag {
             align-self: flex-start;
-            background-color: #38bdf8;
-            color: #0f172a;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-bottom: 20px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+            color: #ffffff;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 24px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
         }
         .slide-title {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 800;
-            line-height: 1.2;
+            line-height: 1.15;
             color: #ffffff;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
         }
         .slide-description {
-            font-size: 1.15rem;
-            line-height: 1.6;
-            color: #94a3b8;
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: #9ca3af;
         }
         .slide-image-container {
             width: 100%;
             height: 100%;
-            max-height: 450px;
-            background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
-            border: 2px dashed #475569;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #64748b;
-            text-align: center;
-            padding: 20px;
-            position: relative;
+            max-height: 500px;
+            border-radius: 16px;
             overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border: 1px solid #2d3748;
+            position: relative;
         }
-        .slide-image-container::before {
-            content: '📷';
-            font-size: 4rem;
-            margin-bottom: 15px;
-            opacity: 0.7;
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
-        .slide-image-placeholder {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #94a3b8;
+        .slide:hover .slide-image {
+            transform: scale(1.03);
         }
-        /* Configuração do slide de Capa e Fim */
+        /* Layouts de Destaque */
         .slide-cover {
             grid-template-columns: 1fr;
             text-align: center;
-            justify-content: center;
-            align-content: center;
         }
         .slide-cover .slide-content {
             align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
         .slide-cover .slide-title {
-            font-size: 4rem;
-            margin-bottom: 25px;
-            background: linear-gradient(to right, #38bdf8, #818cf8);
+            font-size: 4.5rem;
+            background: linear-gradient(to right, #38bdf8, #3b82f6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
         }
         .slide-cover .slide-subtitle {
-            font-size: 1.5rem;
-            color: #94a3b8;
+            font-size: 1.6rem;
+            color: #9ca3af;
             margin-bottom: 40px;
+            font-weight: 400;
         }
-        /* Botões de Controle */
+        /* Controles Avançados */
         .controls {
             position: absolute;
-            bottom: 30px;
+            bottom: 40px;
             right: 60px;
             display: flex;
             gap: 15px;
             z-index: 10;
         }
         .btn {
-            background-color: #334155;
+            background-color: #1f2937;
             color: #ffffff;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 1rem;
+            border: 1px solid #374151;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.2s, transform 0.1s;
+            transition: all 0.2s ease;
         }
         .btn:hover {
-            background-color: #475569;
-        }
-        .btn:active {
-            transform: scale(0.95);
+            background-color: #374151;
+            border-color: #4b5563;
         }
         .btn-primary {
-            background-color: #38bdf8;
-            color: #0f172a;
+            background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+            color: #ffffff;
+            border: none;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
         }
         .btn-primary:hover {
-            background-color: #7dd3fc;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+        .btn:active {
+            transform: scale(0.98);
         }
         .progress-bar {
             position: absolute;
             bottom: 0;
             left: 0;
             height: 6px;
-            background-color: #38bdf8;
+            background: linear-gradient(to right, #0ea5e9, #2563eb);
             width: 0%;
-            transition: width 0.3s ease;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        /* Ajustes Responsivos */
-        @media (max-width: 768px) {
+        /* Adaptação Ultra Responsiva (Mobile e Tablets) */
+        @media (max-width: 1024px) {
+            body {
+                overflow-y: auto;
+                height: auto;
+                padding: 20px 0;
+            }
+            .presentation-container {
+                width: 95vw;
+                height: auto;
+                min-height: 80vh;
+            }
             .slide {
                 grid-template-columns: 1fr;
-                grid-template-rows: auto 1fr;
-                padding: 30px;
-                gap: 20px;
+                grid-template-rows: auto auto;
+                padding: 40px 30px 100px 30px;
+                gap: 30px;
+                position: relative;
+                opacity: 0;
+                display: none;
+            }
+            .slide.active {
+                display: grid;
+                opacity: 1;
             }
             .slide-title {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
+            }
+            .slide-cover .slide-title {
+                font-size: 2.8rem;
             }
             .slide-image-container {
-                max-height: 200px;
+                height: 280px;
             }
             .controls {
-                right: 30px;
+                width: 100%;
+                right: 0;
                 bottom: 20px;
+                padding: 0 30px;
+                justify-content: space-between;
+            }
+            .btn {
+                flex: 1;
+                text-align: center;
+                padding: 12px;
             }
         }
     </style>
@@ -198,69 +225,56 @@
     <div class="presentation-container">
         <div class="slide slide-cover active">
             <div class="slide-content">
-                <div class="slide-tag">História Geral</div>
-                <h1 class="slide-title">Grandes Momentos da História</h1>
-                <p class="slide-subtitle">Uma jornada visual pelos acontecimentos que moldaram o nosso mundo</p>
+                <div class="slide-tag">Inovação e Design</div>
+                <h1 class="slide-title">A Revolução da Geladeira Expositora</h1>
+                <p class="slide-subtitle">Como a fusão entre engenharia de refrigeração e vitrine transformou o varejo global.</p>
                 <button class="btn btn-primary" onclick="nextSlide()">Iniciar Apresentação</button>
             </div>
         </div>
 
         <div class="slide">
             <div class="slide-content">
-                <div class="slide-tag">476 d.C.</div>
-                <h2 class="slide-title">A Queda do Império Romano</h2>
+                <div class="slide-tag">O Cenário Histórico</div>
+                <h2 class="slide-title">O Varejo às Cegas</h2>
                 <p class="slide-description">
-                    A deposição do último imperador romano do Ocidente, Rômulo Augusto, por chefes bárbaros liderados por Odoacro, marca tradicionalmente o fim da Antiguidade e o início da Idade Média na Europa. Esse colapso fragmentou o continente em diversos reinos autónomos.
+                    Antes da sua criação, os produtos refrigerados ficavam escondidos atrás de pesadas portas de metal ou caixas opacas. O cliente precisava abrir o equipamento sem saber o que havia dentro, gerando desperdício massivo de energia térmica, ou dependia diretamente de um atendente para buscar o produto, criando gargalos no atendimento.
                 </p>
             </div>
             <div class="slide-image-container">
-                <span class="slide-image-placeholder">Insira aqui a foto da Queda de Roma<br><small>(Ex: Pintura ou ruínas do Coliseu)</small></span>
+                <img src="https://cdn.discordapp.com/attachments/1191498062443577386/1516444850617192669/IMG_1973.jpg?ex=6a32aad2&is=6a315952&hm=642f377bf409ec2d4a9da474b1877b3e9b09031b2afbe7fe64c2d6702527abf9&" class="slide-image" alt="Geladeira Expositora Moderna">
             </div>
         </div>
 
         <div class="slide">
             <div class="slide-content">
-                <div class="slide-tag">1492</div>
-                <h2 class="slide-title">A Chegada à América</h2>
+                <div class="slide-tag">A Grande Virada</div>
+                <h2 class="slide-title">Nascida para Inovar</h2>
                 <p class="slide-description">
-                    A expedição espanhola liderada por Cristóvão Colombo chegou às ilhas do Caribe, iniciando o processo de colonização das Américas. Esse evento conectou de forma permanente o "Velho Mundo" e o "Novo Mundo", transformando profundamente a economia, a cultura e a geopolítica global.
+                    A geladeira expositora nasceu com a missão clara de <strong>quebrar barreiras visuais</strong>. Unindo tecnologia de vidro duplo temperado antiembaçante com sistemas de circulação de ar forçado, ela transformou o ato de conservar alimentos em um espetáculo visual de vendas. O produto passou de "escondido" para "protagonista".
                 </p>
             </div>
             <div class="slide-image-container">
-                <span class="slide-image-placeholder">Insira aqui a foto das Caravelas ou de Colombo<br><small>(Ex: Pintura histórica do desembarque)</small></span>
+                <img src="https://cdn.discordapp.com/attachments/1191498062443577386/1516444850919047251/IMG_1972.jpg?ex=6a32aad2&is=6a315952&hm=4db02d662c50bd38055112471bd85ba36f4ef88bc63d6acbc245fa682c2681ee&" class="slide-image" alt="Estrutura de Iluminação e Organização">
             </div>
         </div>
 
         <div class="slide">
             <div class="slide-content">
-                <div class="slide-tag">1789</div>
-                <h2 class="slide-title">A Revolução Francesa</h2>
+                <div class="slide-tag">Psicologia do Consumo</div>
+                <h2 class="slide-title">O Poder do Desejo Visual</h2>
                 <p class="slide-description">
-                    Com a emblemática queda da Bastilha, o povo francês desafiou o absolutismo monárquico. Sob o lema "Liberdade, Igualdade, Fraternidade", a revolução redefiniu as estruturas sociais e políticas do ocidente, espalhando ideais democráticos e inaugurando a Idade Contemporânea.
+                    A introdução deste equipamento pavimentou o caminho para a consolidação dos supermercados e lojas de conveniência autônomas. Ao permitir que a iluminação interna LED destacasse as cores e rótulos das bebidas e alimentos, ativou-se o gatilho da <strong>compra por impulso</strong>, aumentando o faturamento do comércio exponencialmente.
                 </p>
             </div>
             <div class="slide-image-container">
-                <span class="slide-image-placeholder">Insira aqui a foto da Revolução Francesa<br><small>(Ex: Obra "A Liberdade Guiando o Povo")</small></span>
-            </div>
-        </div>
-
-        <div class="slide">
-            <div class="slide-content">
-                <div class="slide-tag">1969</div>
-                <h2 class="slide-title">O Homem na Lua</h2>
-                <p class="slide-description">
-                    "Um pequeno passo para o homem, um salto gigante para a humanidade." Neil Armstrong e Buzz Aldrin, a bordo da missão Apollo 11, tornaram-se os primeiros seres humanos a caminhar na Lua. O feito representou o ápice do desenvolvimento científico e da corrida espacial do século XX.
-                </p>
-            </div>
-            <div class="slide-image-container">
-                <span class="slide-image-placeholder">Insira aqui a foto da Missão Apollo 11<br><small>(Ex: Foto clássica de Armstrong ou da pegada)</small></span>
+                <img src="https://cdn.discordapp.com/attachments/1191498062443577386/1516444850617192669/IMG_1973.jpg?ex=6a32aad2&is=6a315952&hm=642f377bf409ec2d4a9da474b1877b3e9b09031b2afbe7fe64c2d6702527abf9&" class="slide-image" alt="Visão Geral do Alinhamento de Gôndolas">
             </div>
         </div>
 
         <div class="slide slide-cover">
             <div class="slide-content">
-                <h1 class="slide-title">Conclusão</h1>
-                <p class="slide-subtitle">Obrigado pela atenção! Perguntas ou debates?</p>
+                <h1 class="slide-title">O Futuro Exposto</h1>
+                <p class="slide-subtitle">Hoje, com eficiência energética inteligente e design ultra-fino, elas continuam ditando o padrão de experiência do consumidor moderno.</p>
                 <button class="btn" onclick="goToSlide(0)">Recomeçar Apresentação</button>
             </div>
         </div>
@@ -288,14 +302,16 @@
                 }
             });
 
-            // Esconde botões extras na capa e no encerramento para um visual mais limpo
+            // Gerencia botões de navegação na Capa e Slide Final
             if (currentSlide === 0 || currentSlide === slides.length - 1) {
-                navControls.style.display = 'none';
+                navControls.style.opacity = '0';
+                navControls.style.pointerEvents = 'none';
             } else {
-                navControls.style.display = 'flex';
+                navControls.style.opacity = '1';
+                navControls.style.pointerEvents = 'auto';
             }
 
-            // Atualiza o preenchimento da barra de progresso inferior
+            // Atualiza a barra de progresso
             const progressPercent = (currentSlide / (slides.length - 1)) * 100;
             progressBar.style.width = progressPercent + '%';
         }
@@ -319,7 +335,7 @@
             updateSlide();
         }
 
-        // Navegação Profissional: Atalhos por Setas e Barra de Espaço
+        // Atalhos de teclado para apresentações profissionais
         document.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowRight' || e.key === ' ') {
                 nextSlide();
@@ -328,7 +344,11 @@
             }
         });
 
-        // Inicialização
+        // Configuração inicial adaptativa para mobile script
+        window.addEventListener('resize', () => {
+            updateSlide();
+        });
+
         updateSlide();
     </script>
 </body>
