@@ -1,897 +1,987 @@
+'HTMLEOF'
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escalação 9V3 - Futsal</title>
+    <title>9V3 — Escalação Oficial</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700;800;900&display=swap');
+
+        :root {
+            --verde:   #00ff88;
+            --azul:    #00d4ff;
+            --rosa:    #ff006e;
+            --bg:      #080c1a;
+            --surface: #0f1428;
+            --card:    #141930;
+            --border:  rgba(255,255,255,0.08);
         }
 
+        * { margin:0; padding:0; box-sizing:border-box; }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1629 100%);
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
             min-height: 100vh;
-            padding: 20px;
             color: #fff;
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
+        /* ── FUNDO ANIMADO ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 50% at 20% 0%, rgba(0,255,136,.07) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(0,212,255,.07) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,0,110,.04) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
         }
 
-        /* HEADER PREMIUM */
+        .container { max-width: 1300px; margin: 0 auto; padding: 30px 20px; position: relative; z-index: 1; }
+
+        /* ══════════ HEADER ══════════ */
         .header {
             text-align: center;
-            margin-bottom: 30px;
-            animation: slideDown 0.8s ease-out;
+            padding: 40px 20px 30px;
+            animation: fadeSlideDown .8s ease both;
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .header h1 {
-            font-size: 3.5em;
-            font-weight: 900;
-            background: linear-gradient(45deg, #00ff88, #00d4ff, #ff006e, #00ff88);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-            animation: gradientShift 3s ease infinite;
-            text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
-        }
-
-        @keyframes gradientShift {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        .header-subtitle {
-            font-size: 1.2em;
-            color: #00ff88;
+        .badge-top {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,255,136,.12);
+            border: 1px solid rgba(0,255,136,.3);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: .8em;
             letter-spacing: 3px;
+            color: var(--verde);
+            font-weight: 700;
             text-transform: uppercase;
             margin-bottom: 20px;
         }
 
-        /* INFORMAÇÕES DO JOGO */
-        .game-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-            animation: fadeIn 0.8s ease-out 0.2s both;
+        .badge-dot {
+            width: 7px; height: 7px;
+            background: var(--verde);
+            border-radius: 50%;
+            animation: blink 1.2s ease-in-out infinite;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
 
-        .info-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            padding: 25px;
-            border-radius: 20px;
-            border: 2px solid rgba(0, 255, 136, 0.3);
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.15);
-        }
-
-        .info-card:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(0, 255, 136, 0.6);
-            box-shadow: 0 8px 32px rgba(0, 255, 136, 0.3);
-            transform: translateY(-5px);
-        }
-
-        .info-card h3 {
-            font-size: 0.85em;
-            color: #00ff88;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
-        }
-
-        .info-card p {
-            font-size: 1.8em;
+        .header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4.5em;
             font-weight: 900;
+            background: linear-gradient(135deg, var(--verde) 0%, var(--azul) 50%, var(--rosa) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .header-sub {
+            font-size: 1.1em;
+            color: rgba(255,255,255,.5);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* ══════════ INFO CARDS ROW ══════════ */
+        .info-row {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 30px 0;
+            animation: fadeSlideDown .8s .15s ease both;
+        }
+
+        .info-pill {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px 24px;
+            text-align: center;
+            min-width: 130px;
+            transition: all .3s;
+        }
+
+        .info-pill:hover {
+            border-color: rgba(0,255,136,.4);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0,255,136,.12);
+        }
+
+        .info-pill .label {
+            font-size: .7em;
+            letter-spacing: 2px;
+            color: var(--verde);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .info-pill .value {
+            font-size: 1.3em;
+            font-weight: 800;
             color: #fff;
         }
 
-        .nossa-sala {
-            border-color: rgba(0, 255, 136, 0.5) !important;
-            background: rgba(0, 255, 136, 0.1) !important;
+        .info-pill.highlight {
+            background: linear-gradient(135deg, rgba(0,255,136,.15), rgba(0,212,255,.1));
+            border-color: rgba(0,255,136,.4);
         }
 
-        .nossa-sala p {
-            color: #00ff88;
-        }
+        .info-pill.highlight .value { color: var(--verde); }
 
-        .adversarios-item {
-            font-size: 0.9em;
-            padding: 5px 0;
-            color: #ff006e;
-        }
+        .adversary-list { display: flex; flex-direction: column; gap: 4px; }
+        .adversary-list span { font-size: 1em; font-weight: 700; color: var(--rosa); }
 
-        /* TÉCNICO */
-        .tecnico-container {
+        /* ══════════ TÉCNICO ══════════ */
+        .tecnico-section {
             display: flex;
             justify-content: center;
-            margin-bottom: 40px;
-            animation: slideDown 0.8s ease-out 0.15s both;
+            margin: 30px 0;
+            animation: fadeSlideDown .8s .2s ease both;
         }
 
         .tecnico-card {
-            background: linear-gradient(135deg, rgba(255, 0, 110, 0.2), rgba(0, 212, 255, 0.2));
-            border: 3px solid #ff006e;
-            border-radius: 30px;
-            padding: 30px;
-            text-align: center;
-            max-width: 350px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 15px 50px rgba(255, 0, 110, 0.3);
-            transition: all 0.3s ease;
+            background: var(--card);
+            border: 2px solid rgba(255,0,110,.35);
+            border-radius: 24px;
+            padding: 28px 40px;
+            display: flex;
+            align-items: center;
+            gap: 28px;
             cursor: pointer;
+            transition: all .35s;
+            max-width: 520px;
+            box-shadow: 0 10px 40px rgba(255,0,110,.15);
+            position: relative;
+            overflow: hidden;
         }
 
-        .tecnico-card:hover {
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 25px 60px rgba(255, 0, 110, 0.5);
-            border-color: #00ff88;
+        .tecnico-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,0,110,.08) 0%, rgba(0,212,255,.06) 100%);
+            opacity: 0;
+            transition: opacity .3s;
         }
 
-        .tecnico-foto {
-            width: 150px;
-            height: 150px;
+        .tecnico-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(255,0,110,.3); border-color: var(--verde); }
+        .tecnico-card:hover::before { opacity: 1; }
+
+        .tecnico-avatar {
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
-            margin: 0 auto 20px;
-            border: 4px solid #ff006e;
             object-fit: cover;
-            box-shadow: 0 0 30px rgba(255, 0, 110, 0.6);
-            transition: all 0.3s ease;
+            object-position: top;
+            border: 3px solid var(--rosa);
+            flex-shrink: 0;
+            transition: all .35s;
+            filter: saturate(1.1);
         }
 
-        .tecnico-card:hover .tecnico-foto {
-            transform: scale(1.1) rotateZ(5deg);
-            box-shadow: 0 0 50px rgba(0, 255, 136, 0.8);
-            border-color: #00ff88;
+        .tecnico-card:hover .tecnico-avatar {
+            border-color: var(--verde);
+            box-shadow: 0 0 30px rgba(0,255,136,.5);
+            transform: scale(1.05);
         }
 
-        .tecnico-titulo {
-            font-size: 0.9em;
-            color: #00d4ff;
-            text-transform: uppercase;
+        .tecnico-info { position: relative; z-index: 1; }
+        .tecnico-badge {
+            font-size: .7em;
+            color: var(--azul);
             letter-spacing: 3px;
+            text-transform: uppercase;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 6px;
         }
 
         .tecnico-nome {
-            font-size: 2.5em;
-            font-weight: 900;
-            color: #ff006e;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .tecnico-funcao {
-            font-size: 1.5em;
-            font-weight: 800;
-            color: #00ff88;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .tecnico-info {
-            font-size: 0.9em;
-            color: rgba(255, 255, 255, 0.8);
-            font-style: italic;
-            padding-top: 15px;
-            border-top: 2px solid rgba(0, 255, 136, 0.3);
-        }
-
-        /* FRASE MOTIVADORA */
-        .motivacao-container {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.15), rgba(0, 212, 255, 0.15));
-            border-left: 5px solid #00ff88;
-            border-right: 5px solid #00d4ff;
-            padding: 35px;
-            border-radius: 15px;
-            text-align: center;
-            margin-bottom: 40px;
-            animation: pulse 2.5s ease-in-out infinite;
-            box-shadow: 0 0 40px rgba(0, 255, 136, 0.2);
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
-            }
-            50% {
-                box-shadow: 0 0 50px rgba(0, 212, 255, 0.4);
-            }
-        }
-
-        .frase-principal {
+            font-family: 'Orbitron', sans-serif;
             font-size: 2.2em;
             font-weight: 900;
-            color: #00ff88;
-            margin-bottom: 15px;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .tecnico-titulo {
+            font-size: 1em;
+            font-weight: 800;
+            color: var(--verde);
+            margin-bottom: 8px;
+        }
+
+        .tecnico-hint {
+            font-size: .75em;
+            color: rgba(255,255,255,.4);
+            font-style: italic;
+        }
+
+        /* ══════════ FRASE MOTIVADORA ══════════ */
+        .motivacao {
+            text-align: center;
+            padding: 32px 28px;
+            background: linear-gradient(135deg, rgba(0,255,136,.1), rgba(0,212,255,.08));
+            border-top: 1px solid rgba(0,255,136,.25);
+            border-bottom: 1px solid rgba(0,212,255,.25);
+            margin: 30px 0;
+            animation: fadeSlideDown .8s .25s ease both;
+        }
+
+        .frase-main {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2em;
+            font-weight: 900;
+            color: var(--verde);
+            margin-bottom: 10px;
             letter-spacing: 1px;
         }
 
-        .frase-secundaria {
-            font-size: 1.3em;
-            color: #00d4ff;
-            font-weight: 600;
+        .frase-sub {
+            font-size: 1.1em;
+            color: rgba(255,255,255,.7);
+            font-weight: 400;
         }
 
-        /* CONTEÚDO PRINCIPAL */
-        .content {
+        /* ══════════ SEÇÃO PRINCIPAL: QUADRA + ELENCO ══════════ */
+        .main-grid {
             display: grid;
-            grid-template-columns: 2.5fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 30px;
+            margin: 30px 0;
         }
 
-        @media (max-width: 1100px) {
-            .content {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width: 1000px) { .main-grid { grid-template-columns: 1fr; } }
+
+        /* ─── QUADRA ─── */
+        .quadra-panel {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 28px;
+            animation: fadeSlideLeft .8s .3s ease both;
         }
 
-        /* QUADRA */
-        .quadra-wrapper {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 35px;
-            border-radius: 25px;
-            border: 2px solid rgba(0, 255, 136, 0.2);
-            backdrop-filter: blur(10px);
-            animation: slideIn 0.8s ease-out 0.3s both;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-60px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .quadra-titulo {
-            text-align: center;
-            font-size: 1.6em;
-            font-weight: 800;
-            color: #00ff88;
-            margin-bottom: 25px;
+        .panel-title {
+            font-size: .75em;
+            letter-spacing: 3px;
+            color: var(--verde);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 20px;
         }
 
         .quadra {
             aspect-ratio: 2/3;
-            background: linear-gradient(135deg, #0a4d2e 0%, #1a7a4a 50%, #0f5c38 100%);
-            border: 4px solid #fff;
-            border-radius: 20px;
+            background:
+                linear-gradient(160deg, #0d4d2a 0%, #1a7a45 50%, #0d4d2a 100%);
+            border: 3px solid rgba(255,255,255,.85);
+            border-radius: 16px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 0 50px rgba(0, 255, 136, 0.4), inset 0 0 50px rgba(0, 0, 0, 0.6);
-        }
-
-        .quadra::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 4px;
-            top: 50%;
-            background: #fff;
-            left: 0;
+            box-shadow: inset 0 0 60px rgba(0,0,0,.5), 0 0 40px rgba(0,255,136,.2);
         }
 
         .quadra::after {
             content: '';
             position: absolute;
-            width: 12px;
-            height: 12px;
-            background: #fff;
+            top: 50%; left: 0; right: 0;
+            height: 3px;
+            background: rgba(255,255,255,.8);
+        }
+
+        .q-linha-central {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 70px; height: 70px;
             border-radius: 50%;
-            top: 50%;
-            left: 50%;
+            border: 2.5px solid rgba(255,255,255,.6);
             transform: translate(-50%, -50%);
         }
 
-        .meio-campo-linha {
+        .q-ponto { position: absolute; top: 50%; left: 50%; width: 8px; height: 8px; background: rgba(255,255,255,.8); border-radius: 50%; transform: translate(-50%, -50%); }
+
+        .q-area-top {
             position: absolute;
-            width: 2px;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.25);
-            left: 50%;
+            top: 5%; left: 50%;
             transform: translateX(-50%);
+            width: 55%; height: 20%;
+            border: 2.5px solid rgba(255,255,255,.5);
+            border-top: none;
+            border-radius: 0 0 50% 50%;
         }
 
-        /* POSIÇÕES DOS JOGADORES */
-        .posicao {
+        .q-area-bot {
+            position: absolute;
+            bottom: 5%; left: 50%;
+            transform: translateX(-50%);
+            width: 55%; height: 20%;
+            border: 2.5px solid rgba(255,255,255,.5);
+            border-bottom: none;
+            border-radius: 50% 50% 0 0;
+        }
+
+        /* Jogadores na quadra */
+        .q-player {
             position: absolute;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
+            gap: 5px;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            z-index: 10;
         }
 
-        .jogador-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .jogador-circle {
-            width: 75px;
-            height: 75px;
+        .q-circle {
+            width: 58px; height: 58px;
             border-radius: 50%;
             background: linear-gradient(135deg, #ff006e, #ff3d8c);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.4em;
-            border: 4px solid #fff;
-            box-shadow: 0 0 25px rgba(255, 0, 110, 0.7), 0 8px 25px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
-            cursor: pointer;
+            border: 3px solid #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 900; font-size: 1.1em;
+            box-shadow: 0 0 18px rgba(255,0,110,.6);
+            transition: all .3s;
+            overflow: hidden;
         }
 
-        .jogador-circle:hover {
-            transform: scale(1.2) translateY(-12px);
-            box-shadow: 0 0 40px rgba(255, 0, 110, 0.9), 0 15px 35px rgba(0, 0, 0, 0.6);
+        .q-circle img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: top;
         }
 
-        .jogador-circle.goleiro {
+        .q-circle.gk {
             background: linear-gradient(135deg, #00ff88, #00d4ff);
-            box-shadow: 0 0 25px rgba(0, 255, 136, 0.7), 0 8px 25px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 18px rgba(0,255,136,.6);
         }
 
-        .jogador-circle.goleiro:hover {
-            box-shadow: 0 0 40px rgba(0, 255, 136, 0.9), 0 15px 35px rgba(0, 0, 0, 0.6);
+        .q-player:hover .q-circle {
+            transform: scale(1.2);
+            box-shadow: 0 0 30px rgba(255,255,255,.4);
         }
 
-        .jogador-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .jogador-nome {
-            font-size: 0.8em;
+        .q-name {
+            font-size: .62em;
             font-weight: 800;
-            text-align: center;
             color: #fff;
-            max-width: 110px;
-            line-height: 1.2;
+            text-align: center;
+            text-shadow: 0 1px 4px rgba(0,0,0,.8);
+            white-space: nowrap;
         }
 
-        .posicao-label {
-            font-size: 0.7em;
+        .q-pos {
+            font-size: .55em;
             font-weight: 700;
-            color: #00ff88;
-            text-align: center;
+            color: var(--verde);
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            text-shadow: 0 1px 4px rgba(0,0,0,.8);
+            white-space: nowrap;
+        }
+
+        /* ─── ELENCO ─── */
+        .squad-panel {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 28px;
+            animation: fadeSlideRight .8s .3s ease both;
+        }
+
+        .squad-sections { display: flex; flex-direction: column; gap: 24px; }
+
+        .squad-label {
+            font-size: .7em;
+            letter-spacing: 3px;
+            color: var(--verde);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* PLAYER CARD */
+        .player-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: all .3s;
+            margin-bottom: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .player-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--verde), var(--azul));
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        .player-card:hover {
+            border-color: rgba(0,255,136,.3);
+            background: rgba(0,255,136,.05);
+            transform: translateX(6px);
+            box-shadow: 0 5px 25px rgba(0,255,136,.1);
+        }
+
+        .player-card:hover::before { opacity: 1; }
+
+        .player-avatar {
+            width: 56px; height: 56px;
+            border-radius: 14px;
+            object-fit: cover;
+            object-position: top;
+            border: 2px solid rgba(255,255,255,.15);
+            flex-shrink: 0;
+            transition: all .3s;
+            filter: saturate(1.1);
+        }
+
+        .player-card:hover .player-avatar {
+            border-color: var(--verde);
+            box-shadow: 0 0 15px rgba(0,255,136,.35);
+        }
+
+        .avatar-initials {
+            width: 56px; height: 56px;
+            border-radius: 14px;
+            border: 2px solid rgba(255,255,255,.15);
+            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 900; font-size: 1.3em;
+            color: #fff;
+            transition: all .3s;
+        }
+
+        .player-card:hover .avatar-initials {
+            border-color: var(--verde);
+            box-shadow: 0 0 15px rgba(0,255,136,.35);
+        }
+
+        .player-meta { flex: 1; min-width: 0; }
+
+        .player-meta-top {
+            display: flex; align-items: center; gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .player-num {
+            font-size: .7em;
+            font-weight: 900;
+            color: var(--verde);
+            background: rgba(0,255,136,.12);
+            border: 1px solid rgba(0,255,136,.25);
+            padding: 2px 8px;
+            border-radius: 6px;
+            letter-spacing: 1px;
+            flex-shrink: 0;
+        }
+
+        .player-name {
+            font-size: 1em;
+            font-weight: 800;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .player-pos-tag {
+            font-size: .72em;
+            font-weight: 600;
+            color: rgba(255,255,255,.45);
             text-transform: uppercase;
             letter-spacing: 1px;
-            max-width: 110px;
-            line-height: 1.1;
         }
 
-        /* POSIÇÕES NA QUADRA */
-        .goleiro-pos {
-            top: 6%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .fixo-pos {
-            top: 32%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .ala-esquerda-pos {
-            top: 48%;
-            left: 10%;
-        }
-
-        .ala-direita-pos {
-            top: 48%;
-            right: 10%;
-        }
-
-        .pivo-pos {
-            bottom: 18%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* RESERVES */
-        .reserves-wrapper {
-            animation: slideIn 0.8s ease-out 0.4s both;
-        }
-
-        .reserves-titulo {
-            font-size: 1.5em;
-            font-weight: 800;
-            margin-bottom: 25px;
-            color: #00ff88;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .reserves-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .reserve-card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
-            padding: 20px;
-            border-radius: 15px;
-            border: 2px solid rgba(255, 0, 110, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 8px 32px rgba(255, 0, 110, 0.1);
-        }
-
-        .reserve-card:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 0, 110, 0.6);
-            transform: translateX(15px);
-            box-shadow: 0 8px 32px rgba(255, 0, 110, 0.3);
-        }
-
-        .reserve-numero {
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(135deg, #ff006e, #ff3d8c);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.4em;
+        .player-arrow {
+            font-size: 1.2em;
+            color: rgba(255,255,255,.2);
+            transition: all .3s;
             flex-shrink: 0;
-            border: 2px solid #fff;
-            box-shadow: 0 0 15px rgba(255, 0, 110, 0.5);
         }
 
-        .reserve-nome {
-            font-size: 1.1em;
-            font-weight: 700;
-            color: #fff;
+        .player-card:hover .player-arrow {
+            color: var(--verde);
+            transform: translateX(4px);
         }
 
-        /* LEGENDA */
-        .legend {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 2px solid rgba(0, 255, 136, 0.2);
+        /* Reservas */
+        .player-card.reserva .player-num {
+            color: var(--rosa);
+            background: rgba(255,0,110,.1);
+            border-color: rgba(255,0,110,.2);
         }
 
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.95em;
+        .player-card.reserva::before {
+            background: linear-gradient(180deg, var(--rosa), #ff3d8c);
         }
 
-        .legend-color {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            border: 2px solid #fff;
-        }
+        .player-card.reserva:hover { border-color: rgba(255,0,110,.3); background: rgba(255,0,110,.04); }
+        .player-card.reserva:hover .player-avatar,
+        .player-card.reserva:hover .avatar-initials { border-color: var(--rosa); box-shadow: 0 0 15px rgba(255,0,110,.3); }
+        .player-card.reserva:hover .player-arrow { color: var(--rosa); }
 
-        .legend-color.jogador {
-            background: linear-gradient(135deg, #ff006e, #ff3d8c);
-        }
-
-        .legend-color.goleiro {
-            background: linear-gradient(135deg, #00ff88, #00d4ff);
-        }
-
-        /* FOOTER */
-        .footer {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
-            padding-bottom: 30px;
-            border-top: 2px solid rgba(0, 255, 136, 0.2);
-            animation: fadeIn 1s ease-out 0.6s both;
-        }
-
-        .footer p {
-            font-size: 1em;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-        }
-
-        /* MODAL DE FRASE PERSONALIZADA */
+        /* ══════════ MODAL ══════════ */
         .modal {
             display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            animation: fadeIn 0.3s ease-out;
+            position: fixed; inset: 0; z-index: 1000;
+            background: rgba(0,0,0,.75);
+            backdrop-filter: blur(10px);
+            align-items: center; justify-content: center;
         }
 
-        .modal.show {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        .modal.show { display: flex; animation: fadeIn .25s ease both; }
 
-        .modal-content {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.15), rgba(0, 212, 255, 0.15));
-            padding: 40px;
-            border-radius: 25px;
-            border: 3px solid #00ff88;
+        .modal-box {
+            background: var(--card);
+            border: 2px solid rgba(0,255,136,.35);
+            border-radius: 28px;
+            padding: 40px 36px;
             text-align: center;
-            max-width: 500px;
-            width: 90%;
-            animation: slideUp 0.4s ease-out;
-            box-shadow: 0 0 60px rgba(0, 255, 136, 0.4);
+            max-width: 460px; width: 92%;
+            animation: modalPop .4s cubic-bezier(.175,.885,.32,1.275) both;
+            box-shadow: 0 30px 80px rgba(0,255,136,.2), 0 0 0 1px rgba(255,255,255,.05);
+            position: relative;
+            overflow: hidden;
         }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        .modal-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, var(--verde), var(--azul), var(--rosa));
         }
 
-        .modal-jogador-numero {
-            font-size: 3em;
-            font-weight: 900;
-            color: #00ff88;
-            margin-bottom: 10px;
+        @keyframes modalPop {
+            from { opacity: 0; transform: scale(.85) translateY(20px); }
+            to   { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        .modal-jogador-nome {
-            font-size: 2em;
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 25px;
+        .modal-avatar {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            object-fit: cover; object-position: top;
+            border: 3px solid var(--verde);
+            margin: 0 auto 18px;
+            display: block;
+            box-shadow: 0 0 25px rgba(0,255,136,.4);
+        }
+
+        .modal-avatar-init {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--verde);
+            margin: 0 auto 18px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5em; font-weight: 900;
+            box-shadow: 0 0 25px rgba(0,255,136,.4);
+        }
+
+        .modal-num {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3em; font-weight: 900;
+            color: var(--verde); margin-bottom: 4px;
+        }
+
+        .modal-name {
+            font-size: 2em; font-weight: 900;
+            color: #fff; margin-bottom: 6px;
+        }
+
+        .modal-pos {
+            font-size: .8em; letter-spacing: 3px;
+            color: var(--azul); text-transform: uppercase;
+            font-weight: 700; margin-bottom: 22px;
         }
 
         .modal-frase {
-            font-size: 1.4em;
-            font-weight: 700;
-            color: #00d4ff;
-            line-height: 1.8;
-            margin-bottom: 25px;
+            font-size: 1.15em; color: rgba(255,255,255,.85);
+            line-height: 1.8; margin-bottom: 28px;
+            font-weight: 400;
         }
 
-        .modal-posicao {
-            font-size: 1em;
-            color: #00ff88;
+        .modal-btn {
+            background: linear-gradient(135deg, var(--verde), var(--azul));
+            color: #000; border: none;
+            padding: 14px 44px;
+            border-radius: 12px;
+            font-size: .95em; font-weight: 800;
+            cursor: pointer; letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
+            transition: all .3s;
         }
 
-        .modal-close {
-            background: linear-gradient(135deg, #ff006e, #ff3d8c);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1em;
-            font-weight: 700;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .modal-btn:hover { transform: scale(1.06); box-shadow: 0 8px 25px rgba(0,255,136,.4); }
+
+        /* ══════════ FOOTER ══════════ */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border);
+            margin-top: 20px;
+            color: rgba(255,255,255,.4);
+            font-size: .9em;
+            line-height: 2;
         }
 
-        .modal-close:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(255, 0, 110, 0.6);
+        /* ══════════ ANIMAÇÕES ══════════ */
+        @keyframes fadeSlideDown {
+            from { opacity: 0; transform: translateY(-24px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        .jogador-clickable {
-            cursor: pointer;
+        @keyframes fadeSlideLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to   { opacity: 1; transform: translateX(0); }
         }
 
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.2em;
-            }
+        @keyframes fadeSlideRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
 
-            .frase-principal {
-                font-size: 1.6em;
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
 
-            .frase-secundaria {
-                font-size: 1.1em;
-            }
-
-            .quadra {
-                aspect-ratio: auto;
-                height: 520px;
-            }
-
-            .jogador-circle {
-                width: 60px;
-                height: 60px;
-                font-size: 1.1em;
-            }
-
-            .jogador-nome {
-                font-size: 0.75em;
-            }
-
-            .posicao-label {
-                font-size: 0.65em;
-            }
-
-            .game-info {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width: 600px) {
+            .header h1 { font-size: 2.8em; }
+            .frase-main { font-size: 1.4em; }
+            .tecnico-card { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- HEADER -->
-        <div class="header">
-            <h1>⚽ FUTSAL MASTER ⚽</h1>
-            <div class="header-subtitle">Escalação Oficial</div>
-        </div>
+<div class="container">
 
-        <!-- TÉCNICO -->
-        <div class="tecnico-container">
-            <div class="tecnico-card" onclick="mostrarFraseTecnico()">
-                <img src="https://cdn.discordapp.com/attachments/1191498062443577386/1516616562675810314/IMG_2011.png?ex=6a334abd&is=6a31f93d&hm=c6961890d4c82e68448a0fe30aaddebcb6e2418c87dce186813aa2966219e77d" alt="Saulo" class="tecnico-foto">
-                <div class="tecnico-titulo">🏆 Comandante</div>
+    <!-- ── HEADER ── -->
+    <div class="header">
+        <div class="badge-top">
+            <div class="badge-dot"></div>
+            Escalação Oficial
+        </div>
+        <h1>9V3</h1>
+        <div class="header-sub">Futsal · Temporada 2026</div>
+    </div>
+
+    <!-- ── INFO PILLS ── -->
+    <div class="info-row">
+        <div class="info-pill highlight">
+            <div class="label">🏆 Nossa Sala</div>
+            <div class="value">9V3</div>
+        </div>
+        <div class="info-pill">
+            <div class="label">📅 Data</div>
+            <div class="value">17 JUN 2026</div>
+        </div>
+        <div class="info-pill">
+            <div class="label">🕐 Horário</div>
+            <div class="value">13:30</div>
+        </div>
+        <div class="info-pill">
+            <div class="label">🏢 Local</div>
+            <div class="value" style="font-size:1em;">Ginásio</div>
+        </div>
+        <div class="info-pill">
+            <div class="label">🎯 Adversários</div>
+            <div class="adversary-list">
+                <span>9V2</span>
+                <span>9V1</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── TÉCNICO ── -->
+    <div class="tecnico-section">
+        <div class="tecnico-card" onclick="openModal('👨‍🏫', 'SAULO', 'Técnico da Porra Toda',
+            '🏆 SAULO! O MESTRE ABSOLUTO! Você não apenas comanda — você TRANSFORMA jogadores em guerreiros! Sua leitura de jogo é incomparável, sua calma nos momentos decisivos é LENDÁRIA! Com você na beira da quadra, o 9V3 É IMBATÍVEL. Esse time respira a sua confiança. OBRIGADO por ser o TÉCNICO DA PORRA TODA! 🔥',
+            'https://cdn.discordapp.com/attachments/1191498062443577386/1516616562675810314/IMG_2011.png?ex=6a334abd&is=6a31f93d&hm=c6961890d4c82e68448a0fe30aaddebcb6e2418c87dce186813aa2966219e77d&')">
+            <img src="https://cdn.discordapp.com/attachments/1191498062443577386/1516616562675810314/IMG_2011.png?ex=6a334abd&is=6a31f93d&hm=c6961890d4c82e68448a0fe30aaddebcb6e2418c87dce186813aa2966219e77d&"
+                 alt="Saulo" class="tecnico-avatar">
+            <div class="tecnico-info">
+                <div class="tecnico-badge">👨‍🏫 Comandante</div>
                 <div class="tecnico-nome">SAULO</div>
-                <div class="tecnico-funcao">TÉCNICO DA PORRA TODA</div>
-                <div class="tecnico-info">Clique para mensagem especial</div>
+                <div class="tecnico-titulo">Técnico da Porra Toda</div>
+                <div class="tecnico-hint">Toque para mensagem especial ✨</div>
             </div>
-        </div>
-        <div class="game-info">
-            <div class="info-card nossa-sala">
-                <h3>🏆 Nossa Sala</h3>
-                <p>9V3</p>
-            </div>
-            <div class="info-card">
-                <h3>📅 Data</h3>
-                <p>17 JUN 2026</p>
-            </div>
-            <div class="info-card">
-                <h3>🕐 Horário</h3>
-                <p>13:30</p>
-            </div>
-            <div class="info-card">
-                <h3>🏢 Ginásio</h3>
-                <p>Centro de Esportes</p>
-            </div>
-            <div class="info-card">
-                <h3>🎯 Adversários</h3>
-                <div class="adversarios-item">9V2</div>
-                <div class="adversarios-item">9V1</div>
-            </div>
-        </div>
-
-        <!-- FRASE MOTIVADORA -->
-        <div class="motivacao-container">
-            <div class="frase-principal">🔥 VAMO PRA CIMA TIME! 🔥</div>
-            <div class="frase-secundaria">Hoje é nosso dia! Determinação, técnica e VITÓRIA!</div>
-        </div>
-
-        <!-- CONTEÚDO PRINCIPAL -->
-        <div class="content">
-            <!-- QUADRA -->
-            <div class="quadra-wrapper">
-                <div class="quadra-titulo">⚽ Quadra de Futsal</div>
-                <div class="quadra">
-                    <div class="meio-campo-linha"></div>
-
-                    <!-- Goleiro -->
-                    <div class="posicao goleiro-pos">
-                        <div class="jogador-wrapper">
-                            <div class="jogador-circle goleiro jogador-clickable" onclick="mostrarFrase(12, 'YURI', 'Goleiro', '🧤 YURI! Você é a SEGURANÇA da defesa! Concentração, reflexos de OURO e confiança inabalável! VOCÊ SEGURA TUDO!')">12</div>
-                            <div class="jogador-info">
-                                <div class="jogador-nome">YURI</div>
-                                <div class="posicao-label">Goleiro</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Fixo -->
-                    <div class="posicao fixo-pos">
-                        <div class="jogador-wrapper">
-                            <div class="jogador-circle jogador-clickable" onclick="mostrarFrase(10, 'KAUAN', 'Fixo', '👑 KAUAN! Você é o COMANDANTE da quadra! Liderança, inteligência tática e PODER absoluto! VOCÊ CONTROLA O JOGO!')">10</div>
-                            <div class="jogador-info">
-                                <div class="jogador-nome">KAUAN</div>
-                                <div class="posicao-label">Fixo</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Ala Esquerda -->
-                    <div class="posicao ala-esquerda-pos">
-                        <div class="jogador-wrapper">
-                            <div class="jogador-circle jogador-clickable" onclick="mostrarFrase(13, 'EDUARDO', 'Ala Esquerda', '⚡ EDUARDO! Você é a CRIATIVIDADE em movimento! Agilidade explosiva, passes de MESTRE e técnica impecável! VOCÊ CRIA O ESPETÁCULO!')">13</div>
-                            <div class="jogador-info">
-                                <div class="jogador-nome">EDUARDO</div>
-                                <div class="posicao-label">Ala Esq.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Ala Direita -->
-                    <div class="posicao ala-direita-pos">
-                        <div class="jogador-wrapper">
-                            <div class="jogador-circle jogador-clickable" onclick="mostrarFrase(2, 'RUAN', 'Ala Direita', '💨 RUAN! Você é a VELOCIDADE pura! Dribles que DEIXAM PRA TRÁS, finalização de precisão e coração de GIGANTE! VOCÊ DESTRÓI!')">2</div>
-                            <div class="jogador-info">
-                                <div class="jogador-nome">RUAN</div>
-                                <div class="posicao-label">Ala Dir.</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Pivô -->
-                    <div class="posicao pivo-pos">
-                        <div class="jogador-wrapper">
-                            <div class="jogador-circle jogador-clickable" onclick="mostrarFrase(3, 'BRENO', 'Pivô', '💪 BRENO! Você é a FORÇA bruta! Domínio de bola, posicionamento INTELIGENTE e força irresistível! VOCÊ ESMAGAAA!')">3</div>
-                            <div class="jogador-info">
-                                <div class="jogador-nome">BRENO</div>
-                                <div class="posicao-label">Pivô</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- LEGENDA -->
-                <div class="legend">
-                    <div class="legend-item">
-                        <div class="legend-color goleiro"></div>
-                        <span>Goleiro</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color jogador"></div>
-                        <span>Jogadores</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RESERVES -->
-            <div class="reserves-wrapper">
-                <div class="reserves-titulo">🔄 Reservas</div>
-                <div class="reserves-list">
-                    <div class="reserve-card jogador-clickable" onclick="mostrarFrase(9, 'ENZO', 'Reserva', '🔥 ENZO! Quando ENTRAR na quadra, a energia EXPLODE! Velocidade, disposição e vontade de VENCER! BORA BOMBAR!')">
-                        <div class="reserve-numero">9</div>
-                        <div class="reserve-nome">ENZO</div>
-                    </div>
-                    <div class="reserve-card jogador-clickable" onclick="mostrarFrase(11, 'WESLEY', 'Reserva', '⚽ WESLEY! Você é CONFIANÇA na bola! Quando chamar, você RESPONDE com técnica e inteligência! PREPARE-SE!')">
-                        <div class="reserve-numero">11</div>
-                        <div class="reserve-nome">WESLEY</div>
-                    </div>
-                    <div class="reserve-card jogador-clickable" onclick="mostrarFrase(15, 'PEDRO', 'Reserva', '💎 PEDRO! Seu momento VIRÁ! Seja RÁPIDO, seja PRECISO, seja LETAL quando chamar! APROVEITE CADA SEGUNDO!')">
-                        <div class="reserve-numero">15</div>
-                        <div class="reserve-nome">PEDRO</div>
-                    </div>
-                    <div class="reserve-card jogador-clickable" onclick="mostrarFrase(16, 'DHONATA', 'Reserva', '🚀 DHONATA! A GARRA que nunca descansa! Quando chamar, MOSTRE POR QUE VOCÊ MERECE ESTAR AQUI! VAMO!')">
-                        <div class="reserve-numero">16</div>
-                        <div class="reserve-nome">DHONATA</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- FOOTER -->
-        <div class="footer">
-            <p>⭐ Preparação define vitória • Foco no objetivo • Deixe tudo na quadra ⭐</p>
-            <p style="margin-top: 15px; font-size: 0.9em; color: rgba(0, 255, 136, 0.8);">Boa sorte no jogo! Que seja uma excelente partida!</p>
         </div>
     </div>
 
-    <!-- MODAL DE FRASE PERSONALIZADA -->
-    <div id="modalFrase" class="modal">
-        <div class="modal-content">
-            <div class="modal-jogador-numero" id="modalNumero">12</div>
-            <div class="modal-jogador-nome" id="modalNome">YURI</div>
-            <div class="modal-posicao" id="modalPosicao">Goleiro</div>
-            <div class="modal-frase" id="modalTexto">Frase aqui</div>
-            <button class="modal-close" onclick="fecharModal()">Fechar</button>
+    <!-- ── FRASE ── -->
+    <div class="motivacao">
+        <div class="frase-main">🔥 VAMO PRA CIMA TIME! 🔥</div>
+        <div class="frase-sub">Determinação dentro, adversário fora. Hoje o ginásio é nosso! 💪</div>
+    </div>
+
+    <!-- ── QUADRA + ELENCO ── -->
+    <div class="main-grid">
+
+        <!-- QUADRA -->
+        <div class="quadra-panel">
+            <div class="panel-title">⚽ Tática</div>
+            <div class="quadra">
+                <div class="q-area-top"></div>
+                <div class="q-area-bot"></div>
+                <div class="q-linha-central"></div>
+                <div class="q-ponto"></div>
+
+                <!-- Goleiro: topo -->
+                <div class="q-player" style="top:11%;left:50%"
+                     onclick="openModal(12,'YURI','Goleiro','🧤 YURI! Você é o ÚLTIMO BALUARTE do 9V3! Reflexos felinos, bolas cobertas com autoridade e uma presença que já desanima o adversário antes de chutar. VOCÊ SEGURA TUDO, PARCEIRO!',null)">
+                    <div class="q-circle gk">12</div>
+                    <div class="q-name">YURI</div>
+                    <div class="q-pos">Goleiro</div>
+                </div>
+
+                <!-- Fixo: centro-alto -->
+                <div class="q-player" style="top:35%;left:50%"
+                     onclick="openModal(10,'KAUAN','Fixo','👑 KAUAN! O GENERAL da nossa defesa! Leitura de jogo de alto nível, saída de bola limpa e a inteligência tática que organiza o time inteiro. VOCÊ É A ESPINHA DORSAL DO 9V3!',
+                     'https://cdn.discordapp.com/attachments/1191498062443577386/1516619048786329670/547F879B-62A6-412F-A802-F5E7A780B7F8.jpg?ex=6a334d0e&is=6a31fb8e&hm=5c87975a129d5475ac5c05df70e98d93b28e9adbb4c4ff13883d495752039467&')">
+                    <div class="q-circle">
+                        <img src="https://cdn.discordapp.com/attachments/1191498062443577386/1516619048786329670/547F879B-62A6-412F-A802-F5E7A780B7F8.jpg?ex=6a334d0e&is=6a31fb8e&hm=5c87975a129d5475ac5c05df70e98d93b28e9adbb4c4ff13883d495752039467&" alt="Kauan">
+                    </div>
+                    <div class="q-name">KAUAN</div>
+                    <div class="q-pos">Fixo</div>
+                </div>
+
+                <!-- Ala Esquerda -->
+                <div class="q-player" style="top:57%;left:14%"
+                     onclick="openModal(13,'EDUARDO','Ala Esquerda','⚡ EDUARDO! Criatividade PURA no lado esquerdo! Você tem o drible que desconcerta e o passe que abre tudo. Quando você toca na bola, a torcida arrepia. VOCÊ FAZ O ESPETÁCULO!',
+                     'https://cdn.discordapp.com/attachments/1191498062443577386/1516619178222813194/2E654F0F-EE81-4E89-9CBF-1A95F62C3DE9.jpg?ex=6a334d2d&is=6a31fbad&hm=ac7f1fbe6a43d43a339335b20c5d58753515f77141fb930d057777a226356957&')">
+                    <div class="q-circle">
+                        <img src="https://cdn.discordapp.com/attachments/1191498062443577386/1516619178222813194/2E654F0F-EE81-4E89-9CBF-1A95F62C3DE9.jpg?ex=6a334d2d&is=6a31fbad&hm=ac7f1fbe6a43d43a339335b20c5d58753515f77141fb930d057777a226356957&" alt="Eduardo">
+                    </div>
+                    <div class="q-name">EDUARDO</div>
+                    <div class="q-pos">Ala Esq.</div>
+                </div>
+
+                <!-- Ala Direita -->
+                <div class="q-player" style="top:57%;left:86%"
+                     onclick="openModal(2,'RUAN','Ala Direita','💨 RUAN! VELOCIDADE que ninguém acompanha! Você destrói pela direita, cruza pra assistência ou vai direto pro gol. Marcação travada! Quando RUAN acelera, é diferença garantida!',null)">
+                    <div class="q-circle">2</div>
+                    <div class="q-name">RUAN</div>
+                    <div class="q-pos">Ala Dir.</div>
+                </div>
+
+                <!-- Pivô -->
+                <div class="q-player" style="top:80%;left:50%"
+                     onclick="openModal(3,'BRENO','Pivô','💪 BRENO! O MONSTRO dentro da área! Você domina, protege a bola e finaliza com precisão cirúrgica. Contra-ataque? Você é o alvo. Pressão? Você aguenta. BRENO O DESTRUIDOR!',null)">
+                    <div class="q-circle">3</div>
+                    <div class="q-name">BRENO</div>
+                    <div class="q-pos">Pivô</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ELENCO -->
+        <div class="squad-panel">
+            <div class="squad-sections">
+
+                <!-- TITULARES -->
+                <div>
+                    <div class="squad-label">✅ Titulares</div>
+
+                    <div class="player-card" onclick="openModal(12,'YURI','Goleiro','🧤 YURI! Você é o ÚLTIMO BALUARTE do 9V3! Reflexos felinos, bolas cobertas com autoridade e uma presença que já desanima o adversário antes de chutar. VOCÊ SEGURA TUDO, PARCEIRO!',null)">
+                        <div class="avatar-initials" style="background:linear-gradient(135deg,#00ff88,#00d4ff)">Y</div>
+                        <div class="player-meta">
+                            <div class="player-meta-top">
+                                <span class="player-num">#12</span>
+                                <span class="player-name">YURI</span>
+                            </div>
+                            <div class="player-pos-tag">Goleiro</div>
+                        </div>
+                        <div class="player-arrow">›</div>
+                    </div>
+
+                    <div class="player-card" onclick="openModal(10,'KAUAN','Fixo','👑 KAUAN! O GENERAL da nossa defesa! Leitura de jogo de alto nível, saída de bola limpa e a inteligência tática que organiza o time inteiro. VOCÊ É A ESPINHA DORSAL DO 9V3!',
+                         'https://cdn.discordapp.com/attachments/1191498062443577386/1516619048786329670/547F879B-62A6-412F-A802-F5E7A780B7F8.jpg?ex=6a334d0e&is=6a31fb8e&hm=5c87975a129d5475ac5c05df70e98d93b28e9adbb4c4ff13883d495752039467&')">
+                        <img src="https://cdn.discordapp.com/attachments/1191498062443577386/1516619048786329670/547F879B-62A6-412F-A802-F5E7A780B7F8.jpg?ex=6a334d0e&is=6a31fb8e&hm=5c87975a129d5475ac5c05df70e98d93b28e9adbb4c4ff13883d495752039467&"
+                             alt="Kauan" class="player-avatar">
+                        <div class="player-meta">
+                            <div class="player-meta-top">
+                                <span class="player-num">#10</span>
+                                <span class="player-name">KAUAN</span>
+                            </div>
+                            <div class="player-pos-tag">Fixo</div>
+                        </div>
+                        <div class="player-arrow">›</div>
+                    </div>
+
+                    <div class="player-card" onclick="openModal(13,'EDUARDO','Ala Esquerda','⚡ EDUARDO! Criatividade PURA no lado esquerdo! Você tem o drible que desconcerta e o passe que abre tudo. Quando você toca na bola, a torcida arrepia. VOCÊ FAZ O ESPETÁCULO!',
+                         'https://cdn.discordapp.com/attachments/1191498062443577386/1516619178222813194/2E654F0F-EE81-4E89-9CBF-1A95F62C3DE9.jpg?ex=6a334d2d&is=6a31fbad&hm=ac7f1fbe6a43d43a339335b20c5d58753515f77141fb930d057777a226356957&')">
+                        <img src="https://cdn.discordapp.com/attachments/1191498062443577386/1516619178222813194/2E654F0F-EE81-4E89-9CBF-1A95F62C3DE9.jpg?ex=6a334d2d&is=6a31fbad&hm=ac7f1fbe6a43d43a339335b20c5d58753515f77141fb930d057777a226356957&"
+                             alt="Eduardo" class="player-avatar">
+                        <div class="player-meta">
+                            <div class="player-meta-top">
+                                <span class="player-num">#13</span>
+                                <span class="player-name">EDUARDO</span>
+                            </div>
+                            <div class="player-pos-tag">Ala Esquerda</div>
+                        </div>
+                        <div class="player-arrow">›</div>
+                    </div>
+
+                    <div class="player-card" onclick="openModal(2,'RUAN','Ala Direita','💨 RUAN! VELOCIDADE que ninguém acompanha! Você destrói pela direita, cruza pra assistência ou vai direto pro gol. Marcação travada? Você passa por cima. QUANDO RUAN ACELERA, É DIFERENÇA!',null)">
+                        <div class="avatar-initials" style="background:linear-gradient(135deg,#ff006e,#ff7b00)">R</div>
+                        <div class="player-meta">
+                            <div class="player-meta-top">
+                                <span class="player-num">#2</span>
+                                <span class="player-name">RUAN</span>
+                            </div>
+                            <div class="player-pos-tag">Ala Direita</div>
+                        </div>
+                        <div class="player-arrow">›</div>
+                    </div>
+
+                    <div class="player-card" onclick="openModal(3,'BRENO','Pivô','💪 BRENO! O MONSTRO dentro da área! Você domina, protege a bola e finaliza com precisão cirúrgica. Contra-ataque? Você é o alvo. Pressão? Você aguenta. BRENO O DESTRUIDOR!',null)">
+                        <div class="avatar-initials" style="background:linear-gradient(135deg,#9b59b6,#ff006e)">B</div>
+                        <div class="player-meta">
+                            <div class="player-meta-top">
+                                <span class="player-num">#3</span>
+                                <span class="player-name">BRENO</span>
+                            </div>
+                            <div class="player-pos-tag">Pivô</div>
+                        </div>
+                        <div class="player-arrow">›</div>
+                    </div>
+                </div>
+
+                <!-- RESERVAS -->
+                <div>
+                    <div class="squad-label" style="color:var(--rosa)">🔄 Reservas</div>
+
+                    <div class="player-card reserva" onclick="openModal(9,'ENZO','Reserva','🔥 ENZO! Você é a BOMBA pronta pra detonar! Quando entrar, o time ganha energia, ritmo e RAÇA. Cada minuto seu em campo vale ouro. ENTRA E EXPLODE!',
+                         'https://cdn.discordapp.com/attachments/1191498062443577386/1516619049034059806/5C7D43D2-1FF9-411F-9912-0262427C2AF6.jpg?ex=6a334d0e&is=6a31fb8e&hm=5ff65db7752798e1883ab78bca176b4c83d9213bec44f3e6ac9c0f8a09d1830d&')">
+                        <img src="https://cdn.discordapp.com/attachments/1191498062443577386/1516619049034059806/5C7D43D2-1FF9-411F-9912-0262427C2AF6.jpg?ex=6a334d0e&is=6a31fb8e&hm=5ff65db7752798e1883ab78bca176b4c83d9213bec44f3e6ac9c0f8a09d1830d&"
+                             alt="Enzo" class="player-avatar">
+                        <div class="player-meta">
+                            <div class="player-meta-top">
+                                <span class="player-num">#9</span>
+                                <span class="player-name">ENZO</span>
+                            </div>
+                            <div class="player-pos-tag">Reserva</div>
+                        </div>
+                        <div class="player-arrow">›</div>
+                    </div>
+
+                    <div class="player-card reserva" onclick="openModal(11,'WESLEY','Reserva','⚽ WESLEY! Seu momento virá e quando vier, você BRILHA! Técnica apurada, inteligência em campo e disposição que não acaba. CONFIANÇA TOTAL EM VOCÊ!',null)">
+                        <div class="avatar-initials" style="background:linear-gradient(135deg,#ff006e,#ff3d8c)">W</div>
+                        <div class="player-meta">
+                            <div class="player-meta-top">
+                                <span class="player-num">#11</span>
+                                <span class="player-name">WESLEY</span>
+                            </div>
+                            <div class="player-pos-tag">Reserva</div>
+                        </div>
+                        <div class="player-arrow">›</div>
+                    </div>
+
+                    <div class="player-card reserva" onclick="openModal(15,'PEDRO','Reserva','💎 PEDRO! A carta na manga do 9V3! Você entra fresco, com fome e vontade de IMPRESSIONAR. Aproveita cada segundo e mostra que você pertence a esse time. VAI LÁ!',null)">
+                        <div class="avatar-initials" style="background:linear-gradient(135deg,#e67e22,#ff006e)">P</div>
+                        <div class="player-meta">
+                            <div class="player-meta-top">
+                                <span class="player-num">#15</span>
+                                <span class="player-name">PEDRO</span>
+                            </div>
+                            <div class="player-pos-tag">Reserva</div>
+                        </div>
+                        <div class="player-arrow">›</div>
+                    </div>
+
+                    <div class="player-card reserva" onclick="openModal(16,'DHONATA','Reserva','🚀 DHONATA! Garra que não tem fim! Quando te chamarem, você vai entrar como se fosse o jogo da vida — porque É! A intensidade é sua marca registrada. VAI COM TUDO!',null)">
+                        <div class="avatar-initials" style="background:linear-gradient(135deg,#1abc9c,#00d4ff)">D</div>
+                        <div class="player-meta">
+                            <div class="player-meta-top">
+                                <span class="player-num">#16</span>
+                                <span class="player-name">DHONATA</span>
+                            </div>
+                            <div class="player-pos-tag">Reserva</div>
+                        </div>
+                        <div class="player-arrow">›</div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 
-    <script>
-        function mostrarFrase(numero, nome, posicao, frase) {
-            document.getElementById('modalNumero').textContent = numero;
-            document.getElementById('modalNome').textContent = nome;
-            document.getElementById('modalPosicao').textContent = posicao;
-            document.getElementById('modalTexto').textContent = frase;
-            document.getElementById('modalFrase').classList.add('show');
+    <!-- ── FOOTER ── -->
+    <div class="footer">
+        <p>⭐ Preparação define vitória · Foco no objetivo · Deixe tudo na quadra ⭐</p>
+        <p style="margin-top:8px;font-size:.8em;">Boa sorte no jogo amanhã! O Ginásio vai ouvir o 9V3! 🏆</p>
+    </div>
+
+</div>
+
+<!-- ── MODAL ── -->
+<div id="modal" class="modal" onclick="if(event.target===this)closeModal()">
+    <div class="modal-box">
+        <div id="modal-avatar-wrap"></div>
+        <div id="modal-num"  class="modal-num"></div>
+        <div id="modal-name" class="modal-name"></div>
+        <div id="modal-pos"  class="modal-pos"></div>
+        <div id="modal-frase" class="modal-frase"></div>
+        <button class="modal-btn" onclick="closeModal()">Fechar</button>
+    </div>
+</div>
+
+<script>
+    function openModal(num, nome, pos, frase, foto) {
+        document.getElementById('modal-num').textContent  = num;
+        document.getElementById('modal-name').textContent = nome;
+        document.getElementById('modal-pos').textContent  = pos;
+        document.getElementById('modal-frase').textContent = frase;
+
+        const wrap = document.getElementById('modal-avatar-wrap');
+        if (foto) {
+            wrap.innerHTML = `<img src="${foto}" class="modal-avatar" alt="${nome}" onerror="this.style.display='none'">`;
+        } else {
+            const initial = String(nome).charAt(0).toUpperCase();
+            const colors  = ['#00ff88,#00d4ff','#ff006e,#ff3d8c','#9b59b6,#ff006e',
+                              '#e67e22,#ff006e','#1abc9c,#00d4ff','#f1c40f,#e67e22'];
+            const grad    = colors[Math.floor(Math.random() * colors.length)];
+            wrap.innerHTML = `<div class="modal-avatar-init" style="background:linear-gradient(135deg,${grad})">${initial}</div>`;
         }
 
-        function mostrarFraseTecnico() {
-            document.getElementById('modalNumero').textContent = '👨‍🏫';
-            document.getElementById('modalNome').textContent = 'SAULO';
-            document.getElementById('modalPosicao').textContent = 'TÉCNICO DA PORRA TODA';
-            document.getElementById('modalTexto').textContent = '⚽ SAULO! O maestro da quadra! Você não apenas COMANDA o time, você INSPIRA, você MOTIVA, você TRANSFORMA jogadores em CAMPEÕES! Sua estratégia é ouro puro, sua liderança é INABALÁVEL! Esse time VENCE porque VOCÊ está aqui! Técnico excepcional, estrategista de primeira, coração de GUERREIRO! CONFIAMOS em VOCÊ! 🏆🔥';
-            document.getElementById('modalFrase').classList.add('show');
-        }
+        document.getElementById('modal').classList.add('show');
+    }
 
-        function fecharModal() {
-            document.getElementById('modalFrase').classList.remove('show');
-        }
+    function closeModal() {
+        document.getElementById('modal').classList.remove('show');
+    }
 
-        // Fechar modal ao clicar fora dele
-        window.onclick = function(event) {
-            const modal = document.getElementById('modalFrase');
-            if (event.target == modal) {
-                modal.classList.remove('show');
-            }
-        }
-
-        // Fechar modal ao pressionar ESC
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                fecharModal();
-            }
-        });
-    </script>
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
 </body>
 </html>
+HTMLEOF
+
