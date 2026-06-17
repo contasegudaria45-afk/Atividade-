@@ -141,6 +141,84 @@
             color: #ff006e;
         }
 
+        /* TÉCNICO */
+        .tecnico-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            animation: slideDown 0.8s ease-out 0.15s both;
+        }
+
+        .tecnico-card {
+            background: linear-gradient(135deg, rgba(255, 0, 110, 0.2), rgba(0, 212, 255, 0.2));
+            border: 3px solid #ff006e;
+            border-radius: 30px;
+            padding: 30px;
+            text-align: center;
+            max-width: 350px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 15px 50px rgba(255, 0, 110, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tecnico-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 25px 60px rgba(255, 0, 110, 0.5);
+            border-color: #00ff88;
+        }
+
+        .tecnico-foto {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 4px solid #ff006e;
+            object-fit: cover;
+            box-shadow: 0 0 30px rgba(255, 0, 110, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        .tecnico-card:hover .tecnico-foto {
+            transform: scale(1.1) rotateZ(5deg);
+            box-shadow: 0 0 50px rgba(0, 255, 136, 0.8);
+            border-color: #00ff88;
+        }
+
+        .tecnico-titulo {
+            font-size: 0.9em;
+            color: #00d4ff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .tecnico-nome {
+            font-size: 2.5em;
+            font-weight: 900;
+            color: #ff006e;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .tecnico-funcao {
+            font-size: 1.5em;
+            font-weight: 800;
+            color: #00ff88;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .tecnico-info {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+            padding-top: 15px;
+            border-top: 2px solid rgba(0, 255, 136, 0.3);
+        }
+
         /* FRASE MOTIVADORA */
         .motivacao-container {
             background: linear-gradient(135deg, rgba(0, 255, 136, 0.15), rgba(0, 212, 255, 0.15));
@@ -620,7 +698,16 @@
             <div class="header-subtitle">Escalação Oficial</div>
         </div>
 
-        <!-- INFORMAÇÕES DO JOGO -->
+        <!-- TÉCNICO -->
+        <div class="tecnico-container">
+            <div class="tecnico-card" onclick="mostrarFraseTecnico()">
+                <img src="https://cdn.discordapp.com/attachments/1191498062443577386/1516616562675810314/IMG_2011.png?ex=6a334abd&is=6a31f93d&hm=c6961890d4c82e68448a0fe30aaddebcb6e2418c87dce186813aa2966219e77d" alt="Saulo" class="tecnico-foto">
+                <div class="tecnico-titulo">🏆 Comandante</div>
+                <div class="tecnico-nome">SAULO</div>
+                <div class="tecnico-funcao">TÉCNICO DA PORRA TODA</div>
+                <div class="tecnico-info">Clique para mensagem especial</div>
+            </div>
+        </div>
         <div class="game-info">
             <div class="info-card nossa-sala">
                 <h3>🏆 Nossa Sala</h3>
@@ -776,6 +863,14 @@
             document.getElementById('modalNome').textContent = nome;
             document.getElementById('modalPosicao').textContent = posicao;
             document.getElementById('modalTexto').textContent = frase;
+            document.getElementById('modalFrase').classList.add('show');
+        }
+
+        function mostrarFraseTecnico() {
+            document.getElementById('modalNumero').textContent = '👨‍🏫';
+            document.getElementById('modalNome').textContent = 'SAULO';
+            document.getElementById('modalPosicao').textContent = 'TÉCNICO DA PORRA TODA';
+            document.getElementById('modalTexto').textContent = '⚽ SAULO! O maestro da quadra! Você não apenas COMANDA o time, você INSPIRA, você MOTIVA, você TRANSFORMA jogadores em CAMPEÕES! Sua estratégia é ouro puro, sua liderança é INABALÁVEL! Esse time VENCE porque VOCÊ está aqui! Técnico excepcional, estrategista de primeira, coração de GUERREIRO! CONFIAMOS em VOCÊ! 🏆🔥';
             document.getElementById('modalFrase').classList.add('show');
         }
 
